@@ -58,23 +58,19 @@ class TodoApp extends React.Component
 			id: Date.now()
 		};
 		let url = `${service1}${newItem.text}?time=${newItem.id}`;
-		let headers1 = {
+		let jsonHeaders = {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json'
 		};
 
 		fetch(url, {
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			}
+			headers: jsonHeaders
 
 		})
 				.then(result => result.json())
 				.then(json => {
 					this.setState(
 							{
-
 								items: json,
 								text: 'sucess'
 							}

@@ -8,15 +8,23 @@ import TodoApp from './TodoApp';
 
 class TodoList extends Component
 {
+	
 	render()
 	{
+		
+		console.log(this);
+console.log(this.props.items);
+
+		//var {items, text} = this.state;
+		//console.log(items);
 		return (
+				
 				<ul>
-					{this.props.items.map(item => (
-												<li key = {item.productId}>
-													<h2>Product: {item.product} |  Brand: {item.brand} </h2>
+					{
+					<li key = {this.props.items.productId}>
+					<h2>Product: {this.props.items.product} |  Brand: {this.props.items.brand} </h2>
 												</li>
-										))}
+										}
 				</ul>
 				);
 	}

@@ -6,6 +6,11 @@ let service = 'https://jsonplaceholder.typicode.com/users';
 let service1 = '/entities.productdetails/';
 let service2 = '/entities.productdetails/findTop10';
 
+let jsonHeaders = {
+	'Content-Type': 'application/json',
+	'Accept': 'application/json'
+};
+
 class App extends Component
 {
 	constructor(props)
@@ -21,29 +26,26 @@ class App extends Component
 	{
 
 		fetch(service2, {
-		headers: {
-		'Content-Type': 'application/json',
-				'Accept': 'application/json'
-		}
+			headers: jsonHeaders
 
 		})
 				.then(result => result.json())
 				.then(json => {
-				this.setState(
-				{
-				isLoaded: true,
-						items: json,
-						error: false
-				}
-				)
+					this.setState(
+							{
+								isLoaded: true,
+								items: json,
+								error: false
+							}
+					)
 				})
 				.catch(json => {
-				this.setState(
-				{
-				isLoaded: false,
-						items: json,
-						error: true,
-				})
+					this.setState(
+							{
+								isLoaded: false,
+								items: json,
+								error: true,
+							})
 				}
 				);
 
@@ -75,7 +77,7 @@ class App extends Component
 														<li key = {item.productId}>
 															<h2>Product: {item.product} |  Brand: {item.brand} </h2>
 														</li>
-											))
+													))
 							}
 						</ul>
 					</div>
