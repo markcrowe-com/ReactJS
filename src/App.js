@@ -1,20 +1,16 @@
 /* global fetch */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
-let service = 'https://jsonplaceholder.typicode.com/users';
-let service1 = '/entities.productdetails/';
-let service2 = '/entities.productdetails/findTop10';
+let serviceUrl = '/productdetails/';
 
 let jsonHeaders = {
 	'Content-Type': 'application/json',
 	'Accept': 'application/json'
 };
 
-class App extends Component
-{
-	constructor(props)
-	{
+class App extends Component {
+	constructor(props) {
 		super(props);
 		this.state = {
 			items: [],
@@ -22,71 +18,54 @@ class App extends Component
 			error: false,
 		}
 	}
-	componentDidMount()
-	{
+	componentDidMount() {
 
-		fetch(service2, {
+		fetch(serviceUrl, {
 			headers: jsonHeaders
 
 		})
-				.then(result => result.json())
-				.then(json => {
-					this.setState(
-							{
-								isLoaded: true,
-								items: json,
-								error: false
-							}
-					)
-				})
-				.catch(json => {
-					this.setState(
-							{
-								isLoaded: false,
-								items: json,
-								error: true,
-							})
-				}
-				);
-
+			.then(result => result.json())
+			.then(json => {
+				this.setState(
+					{
+						isLoaded: true,
+						items: json,
+						error: false
+					}
+				)
+			})
+			.catch(json => {
+				this.setState(
+					{
+						isLoaded: false,
+						items: json,
+						error: true,
+					})
+			}
+			);
 	}
-
-	render()
-	{
-
-		var {isLoaded, items, error} = this.state;
-
-
-		if (error)
-		{
+	render() {
+		var { isLoaded, items, error } = this.state;
+		if (error) {
 			return <div>Error....</div>;
-		} else if (!isLoaded)
-		{
+		} else if (!isLoaded) {
 			return <div>Loading....</div>;
-		} else
-		{
-
-
-
+		} else {
 			return (
-					<div className="App">
-						<h1>Assignment 2 - React</h1>
-						<h2>Find Top 10</h2>
-						<ul>
-							{items.map(item => (
-														<li key = {item.productId}>
-															<h2>Product: {item.product} |  Brand: {item.brand} </h2>
-														</li>
-													))
-							}
-						</ul>
-					</div>
-					);
+				<div className="App">
+					<h1>Assignment 2 - React</h1>
+					<h2>Find Top 10</h2>
+					<ul>
+						{items.map(this.renderProductListItem)}
+					</ul>
+				</div>
+			);
 		}
 	}
+	renderProductListItem(product) {
+		return (
+			<li key={product.productId}>Product:{product.product} | Brand:{product.brand}</li>
+		);
+	}
 }
-
-
-
-
 export default App;

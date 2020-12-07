@@ -1,35 +1,16 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-import React, {Component} from 'react';
-import TodoApp from './TodoApp';
+import React, { Component } from 'react';
+class TodoList extends Component {
 
-class TodoList extends Component
-{
-	
-	render()
-	{
-		
-		console.log(this);
-console.log(this.props.items);
-
-		//var {items, text} = this.state;
-		//console.log(items);
+	render() {
 		return (
-				
-				<ul>
-					{
-					<li key = {this.props.items.productId}>
-					<h2>Product: {this.props.items.product} |  Brand: {this.props.items.brand} </h2>
-												</li>
-										}
-				</ul>
-				);
+			<ol>
+				{
+					<li key={this.props.items.productId}>
+						Product: {this.props.items.product} |  Brand: {this.props.items.brand}
+					</li>
+				}
+			</ol>
+		);
 	}
 }
-;
-
-
 export default TodoList;

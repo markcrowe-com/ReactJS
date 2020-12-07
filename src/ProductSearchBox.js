@@ -1,17 +1,10 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
-let service1 = '/entities.productdetails/';
+let service1 = '/productdetails/';
 
-class ProductSearchBox extends Component
-{
-	
-	constructor(props)
-	{
+class ProductSearchBox extends Component {
+
+	constructor(props) {
 		super(props);
 		this.state = {
 			items: [],
@@ -19,50 +12,48 @@ class ProductSearchBox extends Component
 			error: false,
 		}
 	}
-	componentDidMount()
-	{
+	componentDidMount() {
 
 		fetch(service1, {
-		headers: {
-		'Content-Type': 'application/json',
+			headers: {
+				'Content-Type': 'application/json',
 				'Accept': 'application/json'
-		}
+			}
 
 		})
-				.then(result => result.json())
-				.then(json => {
+			.then(result => result.json())
+			.then(json => {
 				this.setState(
-				{
-				isLoaded: true,
+					{
+						isLoaded: true,
 						items: json,
 						error: false
-				}
+					}
 				)
-				})
-				.catch(json => {
+			})
+			.catch(json => {
 				this.setState(
-				{
-				isLoaded: false,
+					{
+						isLoaded: false,
 						items: json,
 						error: true,
-				})
-				}
-				);
+					})
+			}
+			);
 
 	}
-	render()
-	{
-		
-			return (
-					<form action="page.jps" method="post">
-			<label>
-				Enter Product ID : 
-				<input type="text" name="name" />
-			</label>
-			<input type="submit" value="Submit" />
-		</form>
-);	}
-	
-}
+	render() {
 
+		return (
+			<form action="page.jps" method="post">
+				<label>
+					Enter Product ID :
+				<input type="text" name="name" />
+				</label>
+				<input type="submit" value="Submit" />
+			</form>
+		);
+	}
+
+}
 export default ProductSearchBox;

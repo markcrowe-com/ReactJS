@@ -1,11 +1,6 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-import React, {Component} from 'react';
+import React from 'react';
 import TodoList from './TodoList';
-let service1 = '/entities.productdetails/';
+let service1 = '/productdetails/';
 
 
 class TodoApp extends React.Component
@@ -78,7 +73,4 @@ class TodoApp extends React.Component
 				});
 	}
 }
-
-
 export default TodoApp;
-
